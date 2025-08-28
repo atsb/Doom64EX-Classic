@@ -22,6 +22,7 @@
 
 #include <string.h>             /* for memcpy() */
 #include <sys/types.h>          /* for stupid systems */
+#include <stdbool.h>
 
 #include "MD5.h"
 

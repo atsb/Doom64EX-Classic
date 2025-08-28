@@ -1,6 +1,7 @@
 #ifndef _WADGEN_WAD_H_
 #define _WADGEN_WAD_H_
 
+#include <stdbool.h>
 #include "Sprite.h"
 #include "Gfx.h"
 #include "Texture.h"

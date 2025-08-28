@@ -17,7 +17,7 @@
 #include <rpcdce.h>
 #include <io.h>
 #else
-#include <limits.h>
+#include <linux/limits.h>
 #define MAX_PATH PATH_MAX
 #define ZeroMemory(a,l) memset(a, 0, l)
 #endif

@@ -1,6 +1,8 @@
 #ifndef _WADGEN_ROM_H_
 #define _WADGEN_ROM_H_
 
+#include <stdbool.h>
+
 #define ROMHEADERSIZE   64
 
 /* From Daedalus */

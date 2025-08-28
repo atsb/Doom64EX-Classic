@@ -1,6 +1,29 @@
 #ifndef _WADGEN_FILES_H_
 #define _WADGEN_FILES_H_
 
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#if defined(_WIN32)
+#include <io.h>
+#ifndef S_IREAD
+#define S_IREAD  _S_IREAD
+#endif
+#ifndef S_IWRITE
+#define S_IWRITE _S_IWRITE
+#endif
+#define chmod _chmod
+#else
+#include <unistd.h>
+#ifndef S_IREAD
+#define S_IREAD  S_IRUSR
+#endif
+#ifndef S_IWRITE
+#define S_IWRITE S_IWUSR
+#endif
+#endif
+
 typedef struct {
     path filePath;
     path fileNoExt;

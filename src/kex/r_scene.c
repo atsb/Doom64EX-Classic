@@ -38,6 +38,8 @@ CVAR_EXTERNAL(r_fog);
 CVAR_EXTERNAL(r_rendersprites);
 CVAR_EXTERNAL(st_flashoverlay);
 
+extern vtx_t drawVertex[MAXDLDRAWCOUNT];
+
 //
 // ProcessWalls
 //

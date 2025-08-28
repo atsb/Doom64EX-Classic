@@ -62,7 +62,6 @@ typedef struct {
 extern drawlist_t drawlist[NUMDRAWLISTS];
 
 #define MAXDLDRAWCOUNT  0x10000
-extern vtx_t drawVertex[MAXDLDRAWCOUNT];
 
 dboolean DL_ProcessWalls(vtxlist_t* vl, int* drawcount);
 dboolean DL_ProcessLeafs(vtxlist_t* vl, int* drawcount);

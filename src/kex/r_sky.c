@@ -45,6 +45,7 @@
 #include "r_drawlist.h"
 
 extern lumpinfo_t* lumpinfo;
+extern vtx_t drawVertex[MAXDLDRAWCOUNT];
 
 skydef_t*   sky;
 int         skypicnum = -1;

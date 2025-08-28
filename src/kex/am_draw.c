@@ -42,6 +42,8 @@
 extern fixed_t automappanx;
 extern fixed_t automappany;
 extern byte amModeCycle;
+extern vtx_t drawVertex[MAXDLDRAWCOUNT];
+
 
 static angle_t am_viewangle;
 

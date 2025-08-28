@@ -250,12 +250,29 @@ if(NOT TARGET OpenGL::GL)
   endif()
 endif()
 
+set(_GLU_LIB OpenGL::GLU)
+if(NOT TARGET OpenGL::GLU)
+  if(DEFINED OPENGL_glu_LIBRARY)
+    set(_GLU_LIB ${OPENGL_glu_LIBRARY})
+  elseif(DEFINED OPENGL_GLU_LIBRARY)
+    set(_GLU_LIB ${OPENGL_GLU_LIBRARY})
+  else()
+    find_library(OPENGL_glu_LIBRARY NAMES GLU glu)
+    if(OPENGL_glu_LIBRARY)
+      set(_GLU_LIB ${OPENGL_glu_LIBRARY})
+    else()
+      set(_GLU_LIB "")
+    endif()
+  endif()
+endif()
+
 target_link_libraries(DOOM64 PRIVATE
   ${_PNG_LIB}
   ${_ZLIB_LIB}
   ${_SDL_LIB}
   ${_FLUID_LIB}
   ${_GL_LIB}
+  ${_GLU_LIB}
 )
 
 if(UNIX AND NOT APPLE)

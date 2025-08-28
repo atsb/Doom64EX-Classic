@@ -1,3 +1,0 @@
-/home/ats/Documents/Development/Doom64EX-Classic/src/kex/build/CMakeFiles/DOOM64.dir
-/home/ats/Documents/Development/Doom64EX-Classic/src/kex/build/CMakeFiles/edit_cache.dir
-/home/ats/Documents/Development/Doom64EX-Classic/src/kex/build/CMakeFiles/rebuild_cache.dir

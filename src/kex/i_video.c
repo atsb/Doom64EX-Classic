@@ -180,7 +180,7 @@ void I_NetWaitScreen(void) {
 void I_InitVideo(void) {
     char title[256];
 
-    uint32 f = SDL_INIT_VIDEO;
+    uint32 f = SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_GAMEPAD;
 
     if(SDL_Init(f) < 0) {
         printf("ERROR - Failed to initialize SDL");

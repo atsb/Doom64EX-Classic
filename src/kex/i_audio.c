@@ -56,7 +56,7 @@ CVAR(s_soundfont, DOOMSND.SF2);
 #ifdef _WIN32
 CVAR_CMD(s_driver, dsound)
 #else
-CVAR_CMD(s_driver, sndio)
+CVAR_CMD(s_driver, sdl3)
 #endif
 {
     char* driver = cvar->string;
@@ -82,13 +82,14 @@ CVAR_CMD(s_driver, sndio)
             !dstrcmp(driver, "sndio")       ||
             !dstrcmp(driver, "sndman")      ||
             !dstrcmp(driver, "dart")        ||
+            !dstrcmp(driver, "sdl3")        ||
             !dstrcmp(driver, "file")
       ) {
         return;
     }
 
     CON_Warnf("Invalid driver name\n");
-    CON_Warnf("Valid driver names: jack, alsa, oss, pulseaudio, coreaudio, dsound, portaudio, sndio, sndman, dart, file\n");
+    CON_Warnf("Valid driver names: jack, alsa, oss, pulseaudio, coreaudio, dsound, portaudio, sndio, sndman, dart, sdl3, file\n");
     CON_CvarSet(cvar->name, DEFAULT_FLUID_DRIVER);
 }
 

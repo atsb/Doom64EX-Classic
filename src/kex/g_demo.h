@@ -26,22 +26,14 @@
 
 #define DEMOMARKER      0x80
 
+#include "doomtype.h"
+#include "i_system.h"
+
 dboolean G_CheckDemoStatus(void);
 
 void G_RecordDemo(const char* name);
 void G_PlayDemo(const char* name);
 void G_ReadDemoTiccmd(ticcmd_t* cmd);
 void G_WriteDemoTiccmd(ticcmd_t* cmd);
-
-extern char             demoname[256];  // name of demo lump
-extern dboolean         demorecording;  // currently recording a demo
-extern dboolean         demoplayback;   // currently playing a demo
-extern dboolean         netdemo;
-extern byte*            demobuffer;
-extern byte*            demo_p;
-extern byte*            demoend;
-extern dboolean         singledemo;
-extern dboolean         endDemo;        // signal recorder to stop on next tick
-extern dboolean         iwadDemo;       // hide hud, end playback after one level
 
 #endif

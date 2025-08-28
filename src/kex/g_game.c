@@ -68,6 +68,16 @@ void        G_DoReborn(int playernum);
 void        G_DoLoadGame(void);
 void        G_SetFastParms(int fast_pending);
 
+extern char             demoname[256];  // name of demo lump
+extern dboolean         demorecording;  // currently recording a demo
+extern dboolean         demoplayback;   // currently playing a demo
+extern dboolean         netdemo;
+extern byte*            demobuffer;
+extern byte*            demo_p;
+extern byte*            demoend;
+extern dboolean         singledemo;
+extern dboolean         endDemo;        // signal recorder to stop on next tick
+extern dboolean         iwadDemo;       // hide hud, end playback after one level
 
 gameaction_t    gameaction      = 0;
 gamestate_t     gamestate       = 0;

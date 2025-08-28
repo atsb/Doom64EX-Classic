@@ -40,6 +40,8 @@
 #include "i_opndir.h"
 #endif
 
+extern lumpinfo_t* lumpinfo;
+
 typedef enum {
     SECTION_NORMAL,
     SECTION_TEXTURES,

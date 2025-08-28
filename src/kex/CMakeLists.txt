@@ -2,15 +2,14 @@ cmake_minimum_required(VERSION 3.16)
 
 project(DOOM64 LANGUAGES C)
 
-set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/kex/")
 
-# Dependencies
 find_package(ZLIB REQUIRED)
-find_package(PNG  REQUIRED)
+find_package(PNG REQUIRED)
 find_package(SDL3 QUIET)
 find_package(FluidSynth REQUIRED)
 find_package(OpenGL REQUIRED)
@@ -38,6 +37,7 @@ add_executable(DOOM64
   dgl.c
   f_finale.c
   g_actions.c
+  g_demo.c
   g_game.c
   g_settings.c
   gl_draw.c
@@ -117,7 +117,6 @@ target_include_directories(DOOM64 PRIVATE
   ${CMAKE_SOURCE_DIR}/kex/Ext
 )
 
-# PNG
 if(NOT TARGET PNG::PNG)
   if(PNG_INCLUDE_DIRS)
     target_include_directories(DOOM64 PRIVATE ${PNG_INCLUDE_DIRS})
@@ -125,13 +124,7 @@ if(NOT TARGET PNG::PNG)
     target_include_directories(DOOM64 PRIVATE ${PNG_INCLUDE_DIR})
   endif()
 endif()
-# FluidSynth
-if(TARGET FluidSynth::FluidSynth)
-else()
-  if(FluidSynth_INCLUDE_DIR)
-    target_include_directories(DOOM64 PRIVATE ${FluidSynth_INCLUDE_DIR})
-  endif()
-endif()
+
 if(NOT TARGET SDL3::SDL3 AND NOT TARGET SDL2::SDL2)
   if(SDL_INCLUDE_DIRS)
     target_include_directories(DOOM64 PRIVATE ${SDL_INCLUDE_DIRS})
@@ -140,11 +133,9 @@ if(NOT TARGET SDL3::SDL3 AND NOT TARGET SDL2::SDL2)
   endif()
 endif()
 
-# MSVC
 if(MSVC)
   target_compile_definitions(DOOM64 PRIVATE _CRT_SECURE_NO_WARNINGS NOMINMAX)
-  set_property(TARGET DOOM64 PROPERTY
-    MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
+  set_property(TARGET DOOM64 PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
   target_link_options(DOOM64 PRIVATE /SUBSYSTEM:CONSOLE)
 else()
   target_compile_options(DOOM64 PRIVATE -Wall -Wextra)
@@ -175,29 +166,81 @@ if(EXISTS "${CMAKE_SOURCE_DIR}/revconfig.txt")
   target_include_directories(DOOM64 PRIVATE "${CMAKE_BINARY_DIR}")
 endif()
 
-# PNG
 set(_PNG_LIB PNG::PNG)
 if(NOT TARGET PNG::PNG)
   set(_PNG_LIB ${PNG_LIBRARY})
 endif()
-# ZLIB
+
 set(_ZLIB_LIB ZLIB::ZLIB)
 if(NOT TARGET ZLIB::ZLIB)
   set(_ZLIB_LIB ${ZLIB_LIBRARY})
 endif()
-# SDL
+
 set(_SDL_LIB "")
 if(TARGET SDL3::SDL3)
   set(_SDL_LIB SDL3::SDL3)
 else()
   message(FATAL_ERROR "SDL3 not found.")
 endif()
-# FluidSynth
+# FluidSynth (match OpenGL-style pattern)
 set(_FLUID_LIB FluidSynth::FluidSynth)
 if(NOT TARGET FluidSynth::FluidSynth)
-  set(_FLUID_LIB ${FLUIDSYNTH_LIBRARIES})
+  if(DEFINED FLUIDSYNTH_LIBRARY)
+    set(_FLUID_LIB ${FLUIDSYNTH_LIBRARY})
+  elseif(DEFINED FLUIDSYNTH_LIBRARIES)
+    set(_FLUID_LIB ${FLUIDSYNTH_LIBRARIES})
+  else()
+    find_library(FLUIDSYNTH_LIBRARY NAMES fluidsynth)
+    if(FLUIDSYNTH_LIBRARY)
+      set(_FLUID_LIB ${FLUIDSYNTH_LIBRARY})
+    else()
+      message(FATAL_ERROR "FluidSynth not found.")
+    endif()
+  endif()
 endif()
-# OpenGL
+
+# Headers for whichever path we took
+if(TARGET FluidSynth::FluidSynth)
+  get_target_property(_fs_inc FluidSynth::FluidSynth INTERFACE_INCLUDE_DIRECTORIES)
+  if(_fs_inc)
+    target_include_directories(DOOM64 PRIVATE ${_fs_inc})
+  endif()
+else()
+  if(DEFINED FLUIDSYNTH_INCLUDE_DIRS)
+    target_include_directories(DOOM64 PRIVATE ${FLUIDSYNTH_INCLUDE_DIRS})
+  elseif(DEFINED FLUIDSYNTH_INCLUDE_DIR)
+    target_include_directories(DOOM64 PRIVATE ${FLUIDSYNTH_INCLUDE_DIR})
+  else()
+    find_path(FLUIDSYNTH_INCLUDE_DIR fluidsynth.h PATH_SUFFIXES fluidsynth)
+    if(FLUIDSYNTH_INCLUDE_DIR)
+      target_include_directories(DOOM64 PRIVATE ${FLUIDSYNTH_INCLUDE_DIR})
+    endif()
+  endif()
+endif()
+
+set(FLUIDSYNTH_RELEASE_LIB "")
+set(FLUIDSYNTH_DEBUG_LIB "")
+if(TARGET FluidSynth::FluidSynth)
+  get_target_property(FLUIDSYNTH_RELEASE_LIB FluidSynth::FluidSynth IMPORTED_LOCATION_RELEASE)
+  get_target_property(FLUIDSYNTH_DEBUG_LIB   FluidSynth::FluidSynth IMPORTED_LOCATION_DEBUG)
+  if(NOT FLUIDSYNTH_RELEASE_LIB)
+    get_target_property(FLUIDSYNTH_RELEASE_LIB FluidSynth::FluidSynth IMPORTED_LOCATION)
+  endif()
+  if(NOT FLUIDSYNTH_DEBUG_LIB)
+    set(FLUIDSYNTH_DEBUG_LIB ${FLUIDSYNTH_RELEASE_LIB})
+  endif()
+else()
+  if(DEFINED FLUIDSYNTH_LIBRARY)
+    set(FLUIDSYNTH_RELEASE_LIB ${FLUIDSYNTH_LIBRARY})
+    set(FLUIDSYNTH_DEBUG_LIB   ${FLUIDSYNTH_LIBRARY})
+  elseif(DEFINED FLUIDSYNTH_LIBRARIES)
+    list(GET FLUIDSYNTH_LIBRARIES 0 FLUIDSYNTH_RELEASE_LIB)
+    set(FLUIDSYNTH_DEBUG_LIB ${FLUIDSYNTH_RELEASE_LIB})
+  endif()
+endif()
+
+target_compile_definitions(DOOM64 PRIVATE HAVE_FLUIDSYNTH=1)
+
 set(_GL_LIB OpenGL::GL)
 if(NOT TARGET OpenGL::GL)
   if(DEFINED OPENGL_gl_LIBRARY)
@@ -211,7 +254,6 @@ target_link_libraries(DOOM64 PRIVATE
   ${_PNG_LIB}
   ${_ZLIB_LIB}
   ${_SDL_LIB}
-  ${_SDLNET_LIB}
   ${_FLUID_LIB}
   ${_GL_LIB}
 )

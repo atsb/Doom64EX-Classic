@@ -74,7 +74,7 @@ struct dirent {
  */
 typedef struct {
     /* disk transfer area for this dir */
-    struct _finddata_t dd_dta;
+    //struct _finddata_t dd_dta;
 
     /* dirent struct to return from dir (NOTE: this makes this thread
      * safe as long as only one thread uses a particular DIR struct at

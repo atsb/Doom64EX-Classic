@@ -65,6 +65,8 @@
 #include "p_saveg.h"
 #include "gl_draw.h"
 
+#include "Ext/ChocolateDoom/net_client.h"
+
 //
 // D_DoomLoop()
 // Not a globally visible function,
@@ -105,6 +107,16 @@ dboolean        rundemo4        = false;    // run demo lump #4?
 int             gameflags       = 0;
 int             compatflags     = 0;
 
+extern char             demoname[256];  // name of demo lump
+extern dboolean         demorecording;  // currently recording a demo
+extern dboolean         demoplayback;   // currently playing a demo
+extern dboolean         netdemo;
+extern byte*            demobuffer;
+extern byte*            demo_p;
+extern byte*            demoend;
+extern dboolean         singledemo;
+extern dboolean         endDemo;        // signal recorder to stop on next tick
+extern dboolean         iwadDemo;       // hide hud, end playback after one level
 
 void D_CheckNetGame(void);
 void D_ProcessEvents(void);
@@ -996,6 +1008,9 @@ void D_DoomMain(void) {
 
     I_Printf("P_Init: Init Playloop state.\n");
     P_Init();
+
+    I_Printf("NET_Init: Init network subsystem.\n");
+    NET_Init();
 
     I_Printf("S_Init: Setting up sound.\n");
     S_Init();

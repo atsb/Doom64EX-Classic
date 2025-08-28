@@ -101,6 +101,17 @@ typedef struct
 
 extern fixed_t offsetms;
 
+extern char             demoname[256];  // name of demo lump
+extern dboolean         demorecording;  // currently recording a demo
+extern dboolean         demoplayback;   // currently playing a demo
+extern dboolean         netdemo;
+extern byte*            demobuffer;
+extern byte*            demo_p;
+extern byte*            demoend;
+extern dboolean         singledemo;
+extern dboolean         endDemo;        // signal recorder to stop on next tick
+extern dboolean         iwadDemo;       // hide hud, end playback after one level
+
 static net_connection_t client_connection;
 static net_clientstate_t client_state;
 static net_addr_t *server_addr;

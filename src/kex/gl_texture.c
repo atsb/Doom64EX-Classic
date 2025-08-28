@@ -52,6 +52,8 @@
 
 #define GL_MAX_TEX_UNITS    4
 
+extern lumpinfo_t* lumpinfo;
+
 int         curtexture;
 int         cursprite;
 int         curtrans;

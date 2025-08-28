@@ -66,6 +66,18 @@ CVAR_EXTERNAL(p_usecontext);
 CVAR_EXTERNAL(p_damageindicator);
 CVAR_EXTERNAL(r_texturecombiner);
 
+extern lumpinfo_t* lumpinfo;
+extern char             demoname[256];  // name of demo lump
+extern dboolean         demorecording;  // currently recording a demo
+extern dboolean         demoplayback;   // currently playing a demo
+extern dboolean         netdemo;
+extern byte*            demobuffer;
+extern byte*            demo_p;
+extern byte*            demoend;
+extern dboolean         singledemo;
+extern dboolean         endDemo;        // signal recorder to stop on next tick
+extern dboolean         iwadDemo;       // hide hud, end playback after one level
+
 //
 // STATUS BAR DATA
 //

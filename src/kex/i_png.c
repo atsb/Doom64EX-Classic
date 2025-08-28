@@ -42,6 +42,8 @@ static byte*    pngWriteData;
 static byte*    pngReadData;
 static size_t   pngWritePos = 0;
 
+extern lumpinfo_t* lumpinfo;
+
 CVAR_CMD(i_gamma, 0) {
     GL_DumpTextures();
 }

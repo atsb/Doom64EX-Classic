@@ -44,6 +44,8 @@
 #include "gl_draw.h"
 #include "r_drawlist.h"
 
+extern lumpinfo_t* lumpinfo;
+
 skydef_t*   sky;
 int         skypicnum = -1;
 int         skybackdropnum = -1;

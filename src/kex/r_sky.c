@@ -44,7 +44,6 @@
 #include "gl_draw.h"
 #include "r_drawlist.h"
 
-extern lumpinfo_t* lumpinfo;
 extern vtx_t drawVertex[MAXDLDRAWCOUNT];
 
 skydef_t*   sky;

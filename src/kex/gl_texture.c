@@ -49,10 +49,7 @@
 #include <GL/glu.h>
 #endif
 
-
 #define GL_MAX_TEX_UNITS    4
-
-extern lumpinfo_t* lumpinfo;
 
 int         curtexture;
 int         cursprite;
@@ -106,14 +103,14 @@ typedef struct {
 } gl_env_state_t;
 
 static gl_env_state_t gl_env_state[GL_MAX_TEX_UNITS];
-static int curunit = -1;
+static int curunit = 0;
 
 CVAR_EXTERNAL(r_texnonpowresize);
 CVAR_EXTERNAL(r_fillmode);
 CVAR_CMD(r_texturecombiner, 1) {
     int i;
 
-    curunit = -1;
+    curunit = 0;
 
     for(i = 0; i < GL_MAX_TEX_UNITS; i++) {
         dmemset(&gl_env_state[i], 0, sizeof(gl_env_state_t));

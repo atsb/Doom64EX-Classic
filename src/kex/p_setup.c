@@ -52,8 +52,6 @@
 #include "z_zone.h"
 #include "sc_main.h"
 
-extern lumpinfo_t* lumpinfo;
-
 void P_SpawnMapThing(mapthing_t *mthing);
 
 //

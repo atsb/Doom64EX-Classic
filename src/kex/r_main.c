@@ -48,7 +48,6 @@
 #include "gl_draw.h"
 #include "g_actions.h"
 
-extern lumpinfo_t      *lumpinfo;
 int             skytexture;
 
 fixed_t         viewx=0;

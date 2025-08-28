@@ -44,8 +44,6 @@
 
 #define MAX_SPRITES    1024
 
-extern lumpinfo_t* lumpinfo;
-
 spritedef_t     *spriteinfo;
 int             numsprites;
 

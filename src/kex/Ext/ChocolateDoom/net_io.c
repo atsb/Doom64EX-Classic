@@ -24,10 +24,10 @@
 //
 //-----------------------------------------------------------------------------
 
-#include "i_system.h"
+#include "../../i_system.h"
 #include "net_defs.h"
 #include "net_io.h"
-#include "z_zone.h"
+#include "../../z_zone.h"
 
 #define MAX_MODULES 16
 

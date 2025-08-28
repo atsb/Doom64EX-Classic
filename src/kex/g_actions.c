@@ -28,6 +28,7 @@
 //-----------------------------------------------------------------------------
 
 #include <stdlib.h>
+#include <ctype.h>
 #include "g_local.h"
 #include "m_keys.h"
 #include "i_system.h"

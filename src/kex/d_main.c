@@ -65,8 +65,6 @@
 #include "p_saveg.h"
 #include "gl_draw.h"
 
-#include "Ext/ChocolateDoom/net_client.h"
-
 //
 // D_DoomLoop()
 // Not a globally visible function,
@@ -998,9 +996,6 @@ void D_DoomMain(void) {
 
     I_Printf("P_Init: Init Playloop state.\n");
     P_Init();
-
-    I_Printf("NET_Init: Init network subsystem.\n");
-    NET_Init();
 
     I_Printf("S_Init: Setting up sound.\n");
     S_Init();

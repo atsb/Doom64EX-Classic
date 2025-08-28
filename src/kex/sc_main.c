@@ -30,6 +30,7 @@
 #include <dirent.h>
 #endif
 
+#include <ctype.h>
 #include "doomdef.h"
 #include "doomtype.h"
 #include "z_zone.h"
@@ -52,7 +53,7 @@ static void SC_Open(char* name) {
     lump = W_CheckNumForName(name);
 
     if(lump <= -1) {
-        sc_parser.buffsize   = M_ReadFile(name, &sc_parser.buffer);
+        sc_parser.buffsize   = M_ReadFile(name, (unsigned char **)&sc_parser.buffer);
 
         if(sc_parser.buffsize == -1) {
             I_Error("SC_Open: %s not found", name);
@@ -312,17 +313,17 @@ void SC_Init(void) {
     // setup lexer routines
     //
 
-    sc_parser.open          = SC_Open;
+    sc_parser.open          = (void (*)(void *))SC_Open;
     sc_parser.close         = SC_Close;
-    sc_parser.compare       = SC_Compare;
+    sc_parser.compare       = (void (*)(void *))SC_Compare;
     sc_parser.find          = SC_Find;
     sc_parser.fgetchar      = SC_GetChar;
     sc_parser.rewind        = SC_Rewind;
     sc_parser.getstring     = SC_GetString;
     sc_parser.getint        = SC_GetInteger;
-    sc_parser.setdata       = SC_SetData;
+    sc_parser.setdata       = (int (*)(void *, void *))SC_SetData;
     sc_parser.readtokens    = SC_ReadTokens;
-    sc_parser.error         = SC_Error;
+    sc_parser.error         = (void (*)(void *))SC_Error;
 }
 
 

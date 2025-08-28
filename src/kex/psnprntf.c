@@ -7,6 +7,14 @@
 // terminated, which some implementations do not do.
 //=============================================================================
 
+/* Put these BEFORE any #include of system headers */
+#if defined(__linux__) && !defined(_MSC_VER)
+/* Any one of these unlocks fcvt()'s prototype on glibc.
+ *     _DEFAULT_SOURCE is the modern choice (glibc ≥ 2.20). */
+#ifndef _DEFAULT_SOURCE
+#define _DEFAULT_SOURCE
+#endif
+
 #include <string.h> /* for memset */
 #include <stdarg.h> /* for va_list */
 #include <stdlib.h> /* for fcvt */
@@ -15,33 +23,16 @@
 
 #include "psnprntf.h"
 
-/* Windows stdlib defines fcvt differently <sigh> */
-
-/* haleyjd: not all platforms have fcvt. As a guy on comp.os.msdos.djgpp
- * so eloquently put it, this is driving out Baal by invoking
- * Beelzebub. So, I've copied DJGPP's (barely) portable fcvt, and it
- * can be made to compile by defining NO_FCVT. This is not good, but
- * it'll do.
- */
-
-#ifndef NO_FCVT
-#ifdef __FreeBSD__ // [Kate] Update as necessary
-#define NO_FCVT
+#ifndef _SVID_SOURCE
+#define _SVID_SOURCE
 #endif
-#ifdef WIN32
-#ifndef CYGWIN
+#endif
+
+/* FCVT macro: MSVC uses _fcvt, others use fcvt */
+#if defined(_MSC_VER)
 #define FCVT _fcvt
 #else
 #define FCVT fcvt
-#endif
-#else
-#define FCVT fcvt
-#endif
-#endif
-
-#ifdef NO_FCVT
-#include "m_fcvt.h"
-#define FCVT M_Fcvt
 #endif
 
 int psnprintf(char *str, size_t n, const char *format, ...) {

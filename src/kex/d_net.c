@@ -38,6 +38,7 @@
 #include "con_console.h"
 #include <SDL3/SDL.h>
 #include "i_video.h"
+#include "Ext/md5.h"
 
 #define FEATURE_MULTIPLAYER 1
 
@@ -45,6 +46,9 @@ dboolean    ShowGun=true;
 dboolean    drone = false;
 dboolean    net_cl_new_sync = true;    // Use new client syncronisation code
 fixed_t     offsetms;
+
+extern md5_digest_t net_server_wad_md5sum;
+extern md5_digest_t net_local_wad_md5sum;
 
 //
 // NETWORKING

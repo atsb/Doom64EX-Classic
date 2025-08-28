@@ -25,12 +25,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "doomdef.h"
-#include "doomstat.h"
-#include "g_demo.h"
-#include "i_system.h"
-#include "m_misc.h"
-#include "m_cheat.h"
+#include "../../doomdef.h"
+#include "../../doomstat.h"
+#include "../../g_demo.h"
+#include "../../i_system.h"
+#include "../../m_misc.h"
+#include "../../m_cheat.h"
 
 #include "net_client.h"
 #include "net_common.h"
@@ -40,8 +40,8 @@
 #include "net_server.h"
 #include "net_structrw.h"
 
-#include "st_stuff.h"
-#include "w_wad.h"
+#include "../../st_stuff.h"
+#include "../../w_wad.h"
 
 CVAR_EXTERNAL(sv_nomonsters);
 CVAR_EXTERNAL(sv_fastmonsters);

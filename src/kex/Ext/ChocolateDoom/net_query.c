@@ -25,7 +25,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-#include "i_system.h"
+#include "../../i_system.h"
 //#include "i_timer.h"
 
 #include "net_common.h"

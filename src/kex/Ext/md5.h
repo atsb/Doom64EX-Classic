@@ -23,7 +23,7 @@
 #ifndef MD5_H
 #define MD5_H
 
-#include "doomtype.h"
+#include "../doomtype.h"
 //#ifdef _WIN32
 #include <SDL3/SDL.h>
 //#endif

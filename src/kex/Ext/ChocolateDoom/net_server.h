@@ -24,7 +24,7 @@
 #ifndef NET_SERVER_H
 #define NET_SERVER_H
 
-#include "con_cvar.h"
+#include "../../con_cvar.h"
 
 // initialise server and wait for connections
 

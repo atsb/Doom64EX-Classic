@@ -107,7 +107,7 @@ static void P_UnlinkThinker(thinker_t* thinker) {
 //
 
 void P_RemoveThinker(thinker_t* thinker) {
-    thinker->function.acp1 = P_UnlinkThinker;
+    thinker->function.acp1 = (actionf_p1)P_UnlinkThinker;
     P_MacroDetachThinker(thinker);
 }
 

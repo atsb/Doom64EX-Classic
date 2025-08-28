@@ -24,8 +24,8 @@
 #include <ctype.h>
 #include <stdlib.h>
 
-#include "doomdef.h"
-#include "i_system.h"
+#include "../../doomdef.h"
+#include "../../i_system.h"
 
 #include "net_common.h"
 #include "net_io.h"

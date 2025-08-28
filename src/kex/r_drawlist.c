@@ -118,7 +118,7 @@ void DL_ProcessDrawList(int tag, dboolean(*procfunc)(vtxlist_t*, int*)) {
             qsort(dl->list, dl->index, sizeof(vtxlist_t), SortDrawList);
         }
         else if(dl->index >= 2) {
-            qsort(dl->list, dl->index, sizeof(vtxlist_t), SortSprites);
+            qsort(dl->list, dl->index, sizeof(vtxlist_t), (int (*)(const void *, const void *))SortSprites);
         }
 
         tail = &dl->list[dl->index];

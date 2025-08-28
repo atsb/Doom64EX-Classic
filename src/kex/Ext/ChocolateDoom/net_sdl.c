@@ -27,16 +27,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <SDL3/SDL_net.h>
-
-#include "doomdef.h"
-#include "i_system.h"
-#include "m_misc.h"
+#include "../../doomdef.h"
+#include "../../i_system.h"
+#include "../../m_misc.h"
 #include "net_defs.h"
 #include "net_io.h"
 #include "net_packet.h"
 #include "net_sdl.h"
-#include "z_zone.h"
+#include "../../z_zone.h"
 
 //
 // NETWORKING
@@ -54,59 +52,9 @@ typedef struct
 static addrpair_t **addr_table;
 static int addr_table_size = -1;
 
-// Initialises the address table
-
-static void NET_SDL_InitAddrTable(void)
-{
-
-}
-
-static dboolean AddressesEqual(char *a, char *b)
-{
-    return 0;
-}
-
-// Finds an address by searching the table.  If the address is not found,
-// it is added to the table.
-
-static net_addr_t *NET_SDL_FindAddress(char *addr)
-{
-    return 0;
-}
-
-static void NET_SDL_FreeAddress(net_addr_t *addr)
-{
-
-}
-
-static dboolean NET_SDL_InitClient(void)
-{
-    return 0;
-}
-
-static dboolean NET_SDL_InitServer(void)
-{
-    return 0;
-}
-
-static dboolean NET_SDL_RecvPacket(net_addr_t **addr, net_packet_t **packet)
-{
-    return 0;
-}
-
-void NET_SDL_AddrToString(net_addr_t *addr, char *buffer, int buffer_len)
-{
-
-}
-
 // Complete module
 
 net_module_t net_sdl_module =
 {
-    NET_SDL_InitClient,
-    NET_SDL_InitServer,
-    NET_SDL_RecvPacket,
-    NET_SDL_AddrToString,
-    NET_SDL_FreeAddress,
 };
 

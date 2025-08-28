@@ -39,6 +39,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <errno.h>
+#include <unistd.h>
 
 #include "doomstat.h"
 #include "m_misc.h"
@@ -48,7 +49,18 @@
 #include "i_png.h"
 #include "gl_texture.h"
 #include "p_saveg.h"
-#include <gl/GLU.h>
+
+#if defined(_WIN32)
+#include <windows.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#elif defined(__APPLE__)
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
 
 int        myargc;
 char**    myargv;

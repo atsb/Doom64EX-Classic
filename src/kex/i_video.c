@@ -29,6 +29,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <stdbool.h>
 
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_opengl.h>
@@ -42,7 +43,7 @@
 #include "gl_main.h"
 
 extern SDL_Window* window;
-boolean	window_mouse;
+bool	window_mouse;
 
 CVAR(v_msensitivityx, 5);
 CVAR(v_msensitivityy, 5);
@@ -180,8 +181,6 @@ void I_InitVideo(void) {
     char title[256];
 
     uint32 f = SDL_INIT_VIDEO;
-
-    putenv("SDL_VIDEO_CENTERED=1");
 
     if(SDL_Init(f) < 0) {
         printf("ERROR - Failed to initialize SDL");

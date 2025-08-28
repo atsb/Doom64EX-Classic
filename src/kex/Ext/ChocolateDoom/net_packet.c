@@ -25,7 +25,7 @@
 
 #include <string.h>
 #include "net_packet.h"
-#include "z_zone.h"
+#include "../../z_zone.h"
 
 static int total_packet_memory = 0;
 

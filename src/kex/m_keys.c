@@ -25,6 +25,10 @@
 //
 //-----------------------------------------------------------------------------
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
+
 #include "m_keys.h"
 #include "doomdef.h"
 

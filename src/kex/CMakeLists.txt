@@ -48,7 +48,6 @@ add_executable(DOOM64
   i_png.c
   i_system.c
   i_video.c
-  i_xinput.c
   in_stuff.c
   info.c
   m_cheat.c

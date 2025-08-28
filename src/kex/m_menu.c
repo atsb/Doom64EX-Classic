@@ -27,6 +27,11 @@
 //
 //-----------------------------------------------------------------------------
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <unistd.h>
+
 #ifdef _WIN32
 #include <io.h>
 #endif
@@ -354,12 +359,11 @@ menu_t PauseDef = {
 void M_QuitGame(int choice);
 void M_QuitGameBack(int choice);
 
-enum {
+typedef enum quitprompt_e {
     quityes = 0,
     quitno,
     quitend
-};
-quitprompt_e;
+} quitprompt_e;
 
 menuitem_t QuitGameMenu[]= {
     {1,"Yes",M_QuitGame,'y'},
@@ -405,12 +409,11 @@ void M_QuitGameBack(int choice) {
 void M_QuitGame2(int choice);
 void M_QuitGameBack2(int choice);
 
-enum {
+typedef enum quit2prompt_e {
     quit2yes = 0,
     quit2no,
     quit2end
-};
-quit2prompt_e;
+} quit2prompt_e;
 
 menuitem_t QuitGameMenu2[]= {
     {1,"Yes",M_QuitGame2,'y'},
@@ -512,12 +515,11 @@ void M_EndGame(int choice) {
 
 void M_RestartLevel(int choice);
 
-enum {
+typedef enum rlprompt_e {
     RMainYes = 0,
     RMainNo,
     RMain_end
-};
-rlprompt_e;
+} rlprompt_e;
 
 menuitem_t RestartConfirmMain[]= {
     {1,"Yes",M_RestartLevel,'y'},
@@ -566,11 +568,10 @@ void M_RestartLevel(int choice) {
 void M_DrawStartNewNotify(void);
 void M_NewGameNotifyResponse(int choice);
 
-enum {
+typedef enum startnewnotify_e {
     SNN_Ok = 0,
     SNN_End
-};
-startnewnotify_e;
+} startnewnotify_e;
 
 menuitem_t StartNewNotify[]= {
     {1,"Ok",M_NewGameNotifyResponse,'o'}
@@ -3044,11 +3045,10 @@ void M_DrawControlMenu(void) {
 
 void M_DrawQuickSaveConfirm(void);
 
-enum {
+typedef enum qsconfirm_e {
     QS_Ok = 0,
     QS_End
-};
-qsconfirm_e;
+} qsconfirm_e;
 
 menuitem_t QuickSaveConfirm[]= {
     {1,"Ok",M_ReturnToOptions,'o'}
@@ -3085,11 +3085,10 @@ void M_DrawQuickSaveConfirm(void) {
 
 void M_DrawNetLoadNotify(void);
 
-enum {
+typedef enum netloadnotify_e {
     NLN_Ok = 0,
     NLN_End
-};
-netloadnotify_e;
+} netloadnotify_e;
 
 menuitem_t NetLoadNotify[]= {
     {1,"Ok",M_ReturnToOptions,'o'}
@@ -3126,11 +3125,10 @@ void M_DrawNetLoadNotify(void) {
 
 void M_DrawSaveDeadNotify(void);
 
-enum {
+typedef enum savedeadnotify_e {
     SDN_Ok = 0,
     SDN_End
-};
-savedeadnotify_e;
+} savedeadnotify_e;
 
 menuitem_t SaveDeadNotify[]= {
     {1,"Ok",M_ReturnToOptions,'o'}
@@ -3413,12 +3411,11 @@ void M_ReadSaveStrings(void) {
 
 void M_QuickSaveResponse(int ch);
 
-enum {
+typedef enum quicksaveprompt_e {
     QSP_Yes = 0,
     QSP_No,
     QSP_End
-};
-quicksaveprompt_e;
+} quicksaveprompt_e;
 
 menuitem_t QuickSavePrompt[]= {
     {1,"Yes",M_QuickSaveResponse,'y'},
@@ -3455,12 +3452,11 @@ void M_QuickSaveResponse(int ch) {
 
 void M_QuickLoadResponse(int ch);
 
-enum {
+typedef enum quickloadprompt_e {
     QLP_Yes = 0,
     QLP_No,
     QLP_End
-};
-quickloadprompt_e;
+} quickloadprompt_e;
 
 menuitem_t QuickLoadPrompt[]= {
     {1,"Yes",M_QuickLoadResponse,'y'},

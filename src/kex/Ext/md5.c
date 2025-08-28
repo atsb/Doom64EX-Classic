@@ -20,7 +20,7 @@
  * Still in the public domain.
  */
 
-#include "doomdef.h"
+#include "../doomdef.h"
 
 #include <string.h>             /* for memcpy() */
 #include <sys/types.h>          /* for stupid systems */

@@ -34,6 +34,7 @@
 #endif
 
 #include <stdarg.h>
+#include <unistd.h>
 #include "doomstat.h"
 #include "doomdef.h"
 #include "m_misc.h"

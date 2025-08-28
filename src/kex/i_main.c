@@ -435,7 +435,7 @@ dboolean dfcmp(float f1, float f2) {
 // D_abs
 //
 
-d_inline int D_abs(x) {
+int D_abs(int x) {
     fixed_t _t = (x),_s;
     _s = _t >> (8*sizeof _t-1);
     return (_t^_s)-_s;
@@ -445,7 +445,7 @@ d_inline int D_abs(x) {
 // dfabs
 //
 
-d_inline float D_fabs(float x) {
+float D_fabs(float x) {
     return x < 0 ? -x : x;
 }
 

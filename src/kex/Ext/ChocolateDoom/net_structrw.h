@@ -22,7 +22,7 @@
 #ifndef NET_STRUCTRW_H
 #define NET_STRUCTRW_H
 
-#include "Ext/md5.h"
+#include "../md5.h"
 #include "net_defs.h"
 #include "net_packet.h"
 

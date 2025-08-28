@@ -1583,6 +1583,8 @@ enum {
     tc_endthinkers
 } specials_e;
 
+typedef void (*voidp_fn)(void *);
+
 struct {
     think_t function;
     int     type;
@@ -1591,153 +1593,154 @@ struct {
     int     structsize;
 } saveg_specials[] = {
     {
-        T_MoveCeiling,
+        (voidp_fn)T_MoveCeiling,
         tc_ceiling,
-        saveg_write_ceiling_t,
-        saveg_read_ceiling_t,
+        (voidp_fn)saveg_write_ceiling_t,
+        (voidp_fn)saveg_read_ceiling_t,
         sizeof(ceiling_t)
     },
 
     {
-        T_VerticalDoor,
+        (voidp_fn)T_VerticalDoor,
         tc_door,
-        saveg_write_vldoor_t,
-        saveg_read_vldoor_t,
+        (voidp_fn)saveg_write_vldoor_t,
+        (voidp_fn)saveg_read_vldoor_t,
         sizeof(vldoor_t)
     },
 
     {
-        T_MoveFloor,
+        (voidp_fn)T_MoveFloor,
         tc_floor,
-        saveg_write_floormove_t,
-        saveg_read_floormove_t,
+        (voidp_fn)saveg_write_floormove_t,
+        (voidp_fn)saveg_read_floormove_t,
         sizeof(floormove_t)
     },
 
     {
-        T_PlatRaise,
+        (voidp_fn)T_PlatRaise,
         tc_plat,
-        saveg_write_plat_t,
-        saveg_read_plat_t,
+        (voidp_fn)saveg_write_plat_t,
+        (voidp_fn)saveg_read_plat_t,
         sizeof(plat_t)
     },
 
     {
-        T_LightFlash,
+        (voidp_fn)T_LightFlash,
         tc_flash,
-        saveg_write_lightflash_t,
-        saveg_read_lightflash_t,
+        (voidp_fn)saveg_write_lightflash_t,
+        (voidp_fn)saveg_read_lightflash_t,
         sizeof(lightflash_t)
     },
 
     {
-        T_StrobeFlash,
+        (voidp_fn)T_StrobeFlash,
         tc_strobe,
-        saveg_write_strobe_t,
-        saveg_read_strobe_t,
+        (voidp_fn)saveg_write_strobe_t,
+        (voidp_fn)saveg_read_strobe_t,
         sizeof(strobe_t)
     },
 
     {
-        T_Glow,
+        (voidp_fn)T_Glow,
         tc_glow,
-        saveg_write_glow_t,
-        saveg_read_glow_t,
+        (voidp_fn)saveg_write_glow_t,
+        (voidp_fn)saveg_read_glow_t,
         sizeof(glow_t)
     },
 
     {
-        T_FireFlicker,
+        (voidp_fn)T_FireFlicker,
         tc_flicker,
-        saveg_write_fireflicker_t,
-        saveg_read_fireflicker_t,
+        (voidp_fn)saveg_write_fireflicker_t,
+        (voidp_fn)saveg_read_fireflicker_t,
         sizeof(fireflicker_t)
     },
 
     {
-        T_CountdownTimer,
+        (voidp_fn)T_CountdownTimer,
         tc_delay,
-        saveg_write_delay_t,
-        saveg_read_delay_t,
+        (voidp_fn)saveg_write_delay_t,
+        (voidp_fn)saveg_read_delay_t,
         sizeof(delay_t)
     },
 
     {
-        T_LookAtCamera,
+        (voidp_fn)T_LookAtCamera,
         tc_aimcam,
-        saveg_write_aimcamera_t,
-        saveg_read_aimcamera_t,
+        (voidp_fn)saveg_write_aimcamera_t,
+        (voidp_fn)saveg_read_aimcamera_t,
         sizeof(aimcamera_t)
     },
 
     {
-        T_MovingCamera,
+        (voidp_fn)T_MovingCamera,
         tc_movecam,
-        saveg_write_movecamera_t,
-        saveg_read_movecamera_t,
+        (voidp_fn)saveg_write_movecamera_t,
+        (voidp_fn)saveg_read_movecamera_t,
         sizeof(movecamera_t)
     },
 
     {
-        T_MobjFadeThinker,
+        (voidp_fn)T_MobjFadeThinker,
         tc_fade,
-        saveg_write_mobjfade_t,
-        saveg_read_mobjfade_t,
+        (voidp_fn)saveg_write_mobjfade_t,
+        (voidp_fn)saveg_read_mobjfade_t,
         sizeof(mobjfade_t)
     },
 
     {
-        T_Sequence,
+        (voidp_fn)T_Sequence,
         tc_sequence,
-        saveg_write_sequenceGlow_t,
-        saveg_read_sequenceGlow_t,
+        (voidp_fn)saveg_write_sequenceGlow_t,
+        (voidp_fn)saveg_read_sequenceGlow_t,
         sizeof(sequenceGlow_t)
     },
 
     {
-        T_Quake,
+        (voidp_fn)T_Quake,
         tc_quake,
-        saveg_write_quake_t,
-        saveg_read_quake_t,
+        (voidp_fn)saveg_write_quake_t,
+        (voidp_fn)saveg_read_quake_t,
         sizeof(quake_t)
     },
 
     {
-        T_Combine,
+        (voidp_fn)T_Combine,
         tc_combine,
-        saveg_write_combine_t,
-        saveg_read_combine_t,
+        (voidp_fn)saveg_write_combine_t,
+        (voidp_fn)saveg_read_combine_t,
         sizeof(combine_t)
     },
 
     {
-        T_LaserThinker,
+        (voidp_fn)T_LaserThinker,
         tc_laser,
-        saveg_write_laserthinker_t,
-        saveg_read_laserthinker_t,
+        (voidp_fn)saveg_write_laserthinker_t,
+        (voidp_fn)saveg_read_laserthinker_t,
         sizeof(laserthinker_t)
     },
 
     {
-        T_MoveSplitPlane,
+        (voidp_fn)T_MoveSplitPlane,
         tc_split,
-        saveg_write_splitmove_t,
-        saveg_read_splitmove_t,
+        (voidp_fn)saveg_write_splitmove_t,
+        (voidp_fn)saveg_read_splitmove_t,
         sizeof(splitmove_t)
     },
 
     {
-        T_LightMorph,
+        (voidp_fn)T_LightMorph,
         tc_morph,
-        saveg_write_lightmorph_t,
-        saveg_read_lightmorph_t,
+        (voidp_fn)saveg_write_lightmorph_t,
+        (voidp_fn)saveg_read_lightmorph_t,
         sizeof(lightmorph_t)
     },
 
     {
-        T_MobjExplode,
-        tc_exp,saveg_write_mobjexp_t,
-        saveg_read_mobjexp_t,
+        (voidp_fn)T_MobjExplode,
+        tc_exp,
+        (voidp_fn)saveg_write_mobjexp_t,
+        (voidp_fn)saveg_read_mobjexp_t,
         sizeof(mobjexp_t)
     },
 

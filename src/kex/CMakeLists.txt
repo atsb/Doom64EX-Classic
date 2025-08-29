@@ -1,10 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(DOOM64 LANGUAGES C)
-
-set(CMAKE_C_STANDARD 17)
-set(CMAKE_C_STANDARD_REQUIRED ON)
-set(CMAKE_C_EXTENSIONS OFF)
+project(DOOM64)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/kex/")
 

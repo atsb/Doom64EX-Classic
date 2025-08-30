@@ -348,12 +348,7 @@ static dboolean M_FindCheats(player_t* plyr, int key) {
                     sprintf(buff, "%i", cheat[i].arg);
 
                     // call cheat handler
-                    if(netgame) {
-                        NET_CL_SendCheat(consoleplayer, i, buff);
-                    }
-                    else {
-                        cheat[i].func(plyr, buff);
-                    }
+                    cheat[i].func(plyr, buff);
                 }
             }
         }

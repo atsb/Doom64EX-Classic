@@ -385,7 +385,7 @@ void WI_Drawer(void) {
                 continue;
             }
 
-            Draw_BigText(57, y, WIALPHARED, player_names[i]);
+            Draw_BigText(57, y, WIALPHARED, "%");
             Draw_BigText(232, y, WIALPHARED, "%");
             Draw_BigText(352, y, WIALPHARED, "%");
             Draw_BigText(464, y, WIALPHARED, "%");

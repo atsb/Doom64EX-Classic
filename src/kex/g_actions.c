@@ -262,11 +262,6 @@ alist_t *DoRunActions(alist_t *al, dboolean free) {
             }
             else {
                 CON_CvarSet(cvar->name, al->param[0]);
-                if(netgame) {
-                    if(playeringame[0] && consoleplayer == 0) {
-                        NET_SV_UpdateCvars(cvar);
-                    }
-                }
             }
         }
         else {

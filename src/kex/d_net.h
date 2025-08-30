@@ -27,13 +27,6 @@
 
 #include "d_player.h"
 
-#include "Ext/ChocolateDoom/net_client.h"
-#include "Ext/ChocolateDoom/net_io.h"
-#include "Ext/ChocolateDoom/net_query.h"
-#include "Ext/ChocolateDoom/net_server.h"
-#include "Ext/ChocolateDoom/net_sdl.h"
-#include "Ext/ChocolateDoom/net_loop.h"
-
 #ifdef __GNUG__
 #pragma interface
 #endif

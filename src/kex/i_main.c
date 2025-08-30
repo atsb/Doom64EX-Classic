@@ -497,7 +497,7 @@ int dsnprintf(char *src, size_t n, const char *str, ...) {
 #else
 #ifndef _DEBUG
 #include <windows.h>
-#include "SDL_syswm.h"
+#include <SDL3/SDL_main.h>
 
 extern int __cdecl I_W32ExceptionHandler(PEXCEPTION_POINTERS ep);
 int I_Main(int argc, char *argv[]);

@@ -8,7 +8,7 @@
 //=============================================================================
 
 /* Put these BEFORE any #include of system headers */
-#if defined(__linux__) && !defined(_MSC_VER)
+#if defined(__linux__) && !defined(_WIN32)
 /* Any one of these unlocks fcvt()'s prototype on glibc.
  *     _DEFAULT_SOURCE is the modern choice (glibc ≥ 2.20). */
 #ifndef _DEFAULT_SOURCE

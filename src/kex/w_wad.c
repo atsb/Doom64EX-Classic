@@ -58,10 +58,6 @@
 #include "con_console.h"
 #include "m_misc.h"
 
-#include "Ext/md5.h"
-
-
-
 #ifdef __GNUG__
 #pragma implementation "w_wad.h"
 #endif
@@ -605,34 +601,4 @@ static int GetFileNumber(wad_file_t *handle) {
     ++num_open_wadfiles;
 
     return result;
-}
-
-static void ChecksumAddLump(md5_context_t *md5_context, lumpinfo_t *lump) {
-    char buf[9];
-
-    strncpy(buf, lump->name, 8);
-    buf[8] = '\0';
-
-    MD5_UpdateString(md5_context, buf);
-    MD5_UpdateInt32(md5_context, GetFileNumber(lump->wadfile));
-    MD5_UpdateInt32(md5_context, lump->position);
-    MD5_UpdateInt32(md5_context, lump->size);
-}
-
-void W_Checksum(md5_digest_t digest) {
-    md5_context_t md5_context;
-    int i;
-
-    MD5_Init(&md5_context);
-
-    num_open_wadfiles = 0;
-
-    // Go through each entry in the WAD directory, adding information
-    // about each entry to the MD5 hash.
-
-    for(i = 0; i < numlumps; ++i) {
-        ChecksumAddLump(&md5_context, &lumpinfo[i]);
-    }
-
-    MD5_Final(digest, &md5_context);
 }

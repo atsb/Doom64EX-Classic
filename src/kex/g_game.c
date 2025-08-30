@@ -292,12 +292,6 @@ static CMD(Seta) {
     }
 
     CON_CvarSet(param[0], param[1]);
-
-    if(netgame) {
-        if(playeringame[0] && consoleplayer == 0) {
-            NET_SV_UpdateCvars(CON_CvarGet(param[0]));
-        }
-    }
 }
 
 //

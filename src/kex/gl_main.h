@@ -24,6 +24,7 @@
 #define __GL_MAIN_H__
 
 #include <SDL3/SDL_opengl.h>
+#include "dgl.h"
 
 typedef GLuint        dtexture;
 typedef GLfloat        rfloat;

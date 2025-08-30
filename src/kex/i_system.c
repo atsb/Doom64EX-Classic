@@ -27,14 +27,17 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdarg.h>
 
 #ifdef _WIN32
 #include <direct.h>
 #include <io.h>
 #endif
 
-#include <stdarg.h>
+#ifndef _WIN32
 #include <unistd.h>
+#endif
+
 #include "doomstat.h"
 #include "doomdef.h"
 #include "m_misc.h"
@@ -114,8 +117,6 @@ LRESULT CALLBACK SysConsoleProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPara
             break;
 
         case READY_ID:
-            NET_CL_StartGame();
-            DestroyWindow(hwndButtonReady);
             break;
         }
         break;

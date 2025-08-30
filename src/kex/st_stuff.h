@@ -29,8 +29,6 @@
 #include "d_event.h"
 #include "p_mobj.h"
 
-#include "Ext/ChocolateDoom/net_client.h"
-
 //
 // STATUS BAR
 //
@@ -59,7 +57,6 @@ void ST_ClearDamageMarkers(void);
 void ST_RegisterCvars(void);
 void ST_DisplayPendingWeapon(void);
 
-extern char player_names[MAXPLAYERS][MAXPLAYERNAME];
 extern dboolean st_chatOn;
 extern int st_crosshairs;
 

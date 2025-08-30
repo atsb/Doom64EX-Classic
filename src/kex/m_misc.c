@@ -39,7 +39,6 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <errno.h>
-#include <unistd.h>
 
 #include "doomstat.h"
 #include "m_misc.h"
@@ -60,6 +59,10 @@
 #else
 #include <GL/gl.h>
 #include <GL/glu.h>
+#endif
+
+#ifndef _WIN32
+#include <unistd.h>
 #endif
 
 int        myargc;

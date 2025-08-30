@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.16)
 
 project(DOOM64)
 
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/kex/")
-
 find_package(ZLIB REQUIRED)
 find_package(PNG REQUIRED)
 find_package(SDL3 QUIET)
@@ -93,20 +91,7 @@ add_executable(DOOM64
   w_wad.c
   wi_stuff.c
   z_zone.c
-  Ext/md5.c
-  Ext/ChocolateDoom/net_client.c
-  Ext/ChocolateDoom/net_common.c
-  Ext/ChocolateDoom/net_dedicated.c
-  Ext/ChocolateDoom/net_io.c
-  Ext/ChocolateDoom/net_loop.c
-  Ext/ChocolateDoom/net_packet.c
-  Ext/ChocolateDoom/net_query.c
-  Ext/ChocolateDoom/net_sdl.c
-  Ext/ChocolateDoom/net_server.c
-  Ext/ChocolateDoom/net_structrw.c
 )
-
-target_compile_definitions(DOOM64 PRIVATE dprintf=_dprintf __cdecl=)
 
 target_include_directories(DOOM64 PRIVATE
   ${CMAKE_SOURCE_DIR}/kex
@@ -127,39 +112,6 @@ if(NOT TARGET SDL3::SDL3 AND NOT TARGET SDL2::SDL2)
   elseif(SDL_INCLUDE_DIR)
     target_include_directories(DOOM64 PRIVATE ${SDL_INCLUDE_DIR})
   endif()
-endif()
-
-if(MSVC)
-  target_compile_definitions(DOOM64 PRIVATE _CRT_SECURE_NO_WARNINGS NOMINMAX)
-  set_property(TARGET DOOM64 PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
-  target_link_options(DOOM64 PRIVATE /SUBSYSTEM:CONSOLE)
-else()
-  target_compile_options(DOOM64 PRIVATE -Wall -Wextra)
-endif()
-
-set(VCS_REV "0")
-find_package(Git QUIET)
-if(GIT_FOUND)
-  execute_process(COMMAND ${GIT_EXECUTABLE} rev-list --count HEAD
-                  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-                  OUTPUT_VARIABLE VCS_REV OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
-endif()
-if(VCS_REV STREQUAL "0")
-  find_program(SVN_EXECUTABLE svn)
-  if(SVN_EXECUTABLE)
-    execute_process(COMMAND ${SVN_EXECUTABLE} info --show-item revision
-                    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-                    OUTPUT_VARIABLE VCS_REV OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
-    if(NOT VCS_REV)
-      set(VCS_REV "0")
-    endif()
-  endif()
-endif()
-if(EXISTS "${CMAKE_SOURCE_DIR}/revconfig.txt")
-  file(READ  "${CMAKE_SOURCE_DIR}/revconfig.txt" _REV_IN)
-  string(REPLACE "$WCREV$" "${VCS_REV}" _REV_OUT "${_REV_IN}")
-  file(WRITE "${CMAKE_BINARY_DIR}/version.h" "${_REV_OUT}")
-  target_include_directories(DOOM64 PRIVATE "${CMAKE_BINARY_DIR}")
 endif()
 
 set(_PNG_LIB PNG::PNG)

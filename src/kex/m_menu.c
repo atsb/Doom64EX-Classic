@@ -30,7 +30,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
-#include <unistd.h>
 
 #ifdef _WIN32
 #include <io.h>
@@ -42,8 +41,13 @@
 #include <dirent.h>
 #endif
 
+#ifndef _WIN32
+#include <unistd.h>
+#endif
+
 #include <fcntl.h>
 #include "doomdef.h"
+#include "doomtype.h"
 #include "i_video.h"
 #include "d_englsh.h"
 #include "m_cheat.h"
@@ -4294,9 +4298,6 @@ dboolean M_Responder(event_t* ev) {
             inputEnter = false;
             if(currentMenu == &NetworkDef) {
                 CON_CvarSet(m_playername.name, inputString);
-                if(netgame) {
-                    NET_SV_UpdateCvars(&m_playername);
-                }
             }
             else {
                 dstrcpy(savegamestrings[saveSlot], inputString);

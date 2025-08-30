@@ -139,13 +139,6 @@ char* chat_macros[] = {
     HUSTR_CHATMACRO9
 };
 
-char player_names[MAXPLAYERS][MAXPLAYERNAME] = {
-    HUSTR_PLR1,
-    HUSTR_PLR2,
-    HUSTR_PLR3,
-    HUSTR_PLR4
-};
-
 static const rcolor st_chatcolors[MAXPLAYERS] = {
     D_RGBA(192, 255, 192, 255),
     D_RGBA(255, 192, 192, 255),
@@ -1065,14 +1058,6 @@ void ST_Init(void) {
 
     ST_ClearMessage();
 
-    // setup player names
-
-    for(i = 0; i < MAXPLAYERS; i++) {
-        if(playeringame[i] && net_player_names[i][0]) {
-            snprintf(player_names[i], MAXPLAYERNAME, "%s", net_player_names[i]);
-        }
-    }
-
     // setup chat text
 
     for(i = 0; i < MAXCHATNODES; i++) {
@@ -1120,18 +1105,7 @@ void ST_Init(void) {
 //
 
 void ST_AddChatMsg(char *msg, int player) {
-    char str[MAXCHATSIZE];
 
-    sprintf(str, "%s: %s", player_names[player], msg);
-    dmemset(stchat[st_chatcount].msg, 0, MAXCHATSIZE);
-    memcpy(stchat[st_chatcount].msg, str, dstrlen(str));
-    stchat[st_chatcount].tics = MAXCHATTIME;
-    stchat[st_chatcount].color = st_chatcolors[player];
-    st_chatcount = (st_chatcount + 1) % MAXCHATNODES;
-
-    S_StartSound(NULL, sfx_darthit);
-    CON_Printf(WHITE, str);
-    CON_Printf(WHITE, "\n");
 }
 
 //
@@ -1383,7 +1357,6 @@ static void ST_DisplayName(int playernum) {
     fixed_t     ypitch;
     fixed_t     screeny;
     player_t*   player;
-    char        name[MAXPLAYERNAME];
     rcolor      color;
     fixed_t     distance;
 
@@ -1473,10 +1446,6 @@ static void ST_DisplayName(int playernum) {
     // reset alpha and set new value
     color ^= (((color >> 24) & 0xff) << 24);
     color |= ((255 - (int)((float)distance * 0.19921875f)) << 24);
-
-    // display player name
-    dsnprintf(name, MAXPLAYERNAME, "%s", player_names[playernum]);
-    Draw_Text(screenx, screeny, color, 1.0f, 0, name);
 }
 
 

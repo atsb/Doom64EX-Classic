@@ -1,9 +1,3 @@
-# Migration to CodeBerg
-
-Doom64EX-Classic has migrated to EU-based CodeBerg! https://codeberg.org/atsb/Doom64EX-Classic
-
-No further developments will be done here and the repo will be closed on GitHub in 6 months.
-
 # Doom64EX-Classic
 Doom64EX Classic - for those that preferred 2.5 over EX-Plus
 

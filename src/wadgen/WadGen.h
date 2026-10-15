@@ -33,7 +33,7 @@
 #ifdef PLATFORM_PC
 
 #define USE_PNG
-#include <libpng15/png.h>
+#include <png.h>
 
 #endif
 

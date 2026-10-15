@@ -37,6 +37,7 @@
 #else
 #include <stdio.h>
 #undef dprintf
+#define dprintf d64_dprintf
 #endif
 
 #include "doomtype.h"

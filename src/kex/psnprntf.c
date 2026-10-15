@@ -33,6 +33,27 @@
 /* FCVT macro: MSVC uses _fcvt, others use fcvt */
 #if defined(_MSC_VER)
 #define FCVT _fcvt
+#elif defined(__FreeBSD__)
+/* FreeBSD never had fcvt(); emulate it with snprintf. */
+#include <stdio.h>
+static char *d64_fcvt(double value, int ndigit, int *decpt, int *sign) {
+    static char buf[512];
+    char *dot;
+
+    *sign = value < 0.0;
+    snprintf(buf, sizeof(buf), "%.*f", ndigit < 0 ? 0 : ndigit,
+             *sign ? -value : value);
+    dot = strchr(buf, '.');
+    if(dot) {
+        *decpt = (int)(dot - buf);
+        memmove(dot, dot + 1, strlen(dot));
+    }
+    else {
+        *decpt = (int)strlen(buf);
+    }
+    return buf;
+}
+#define FCVT d64_fcvt
 #else
 #define FCVT fcvt
 #endif

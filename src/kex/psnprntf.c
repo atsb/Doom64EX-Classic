@@ -14,6 +14,7 @@
 #ifndef _DEFAULT_SOURCE
 #define _DEFAULT_SOURCE
 #endif
+#endif
 
 #include <string.h> /* for memset */
 #include <stdarg.h> /* for va_list */
@@ -23,6 +24,7 @@
 
 #include "psnprntf.h"
 
+#if defined(__linux__) && !defined(_WIN32)
 #ifndef _SVID_SOURCE
 #define _SVID_SOURCE
 #endif

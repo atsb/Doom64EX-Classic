@@ -45,7 +45,7 @@
 #endif
 
 #ifndef __APPLE__
-#include <malloc.h>
+#include <stdlib.h>
 #else
 #include <malloc/malloc.h>
 #endif
